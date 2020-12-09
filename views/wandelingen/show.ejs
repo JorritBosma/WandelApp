@@ -1,0 +1,54 @@
+<%layout('layouts/boilerplate') %>
+
+<div class="row">
+    <div class="col-6">
+        <div class="card mb-3">
+            <img src="<%=wandeling.foto%>" class="card-img-top" alt="Een foto van de wandeling">
+            <div class="card-body">
+                <h5 class="card-title"><%=wandeling.naam%>, <%= wandeling.gebied %>, <%= wandeling.provincie %> </h5>
+
+                <p class="card-text"><%=wandeling.beschrijving%></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">De wandeling is <%= wandeling.afstand %> km lang en is
+                    <%= wandeling.bewegwijzering %> gemarkeerd.</li>
+                <li class="list-group-item">Bezoek voor meer informatie de <a href="<%= wandeling.website %>">website
+                        van <%= wandeling.organisatie %>.</a></li>
+                <div class="card-body">
+                    <a class="card-link btn btn-warning" href="/wandelingen/<%=wandeling._id%>/edit ">Wijzig</a>
+                    <form class="d-inline" action="/wandelingen/<%=wandeling._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger">Wis</button>
+                    </form>
+                    <a class="card-link btn btn-primary" href="/wandelingen">Terug</a>
+                </div>
+                <div class="card-footer text-muted">Aangemaakt door: <%=wandeling.auteur.username%> </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <h3>Beoordeel deze wandeling</h3>
+        <form action="/wandelingen/<%=wandeling._id%>/recensies" method="POST" class="mb-3 validated-form" novalidate>
+            <div class="mb-3">
+                <label class="form-label" for="beoordeling">Beoordeling</label>
+                <input class="form-range" type="range" min="1" max="5" name="recensie[beoordeling]" id="beoordeling">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="body">Recensie</label>
+                <textarea class="form-control" name="recensie[body]" id="body" cols="30" rows="3" required></textarea>
+                <div class="valid-feedback">Lekker getypt hoor!</div>
+            </div>
+            <button class="btn btn-success">Opslaan</button>
+        </form>
+        <% for(let recensie of wandeling.recensies) {%>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Beoordeling: <%= recensie.beoordeling %> sterren</h5>
+                <p class="card-text">Recensie: <%= recensie.body %></p>
+                <form action="/wandelingen/<%= wandeling._id %>/recensies/<%= recensie._id %>?_method=DELETE"
+                    method="POST">
+                    <button class="btn btn-sm btn-danger">Wis</button>
+                </form>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</div>

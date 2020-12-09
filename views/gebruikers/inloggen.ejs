@@ -1,0 +1,21 @@
+<% layout('layouts/boilerplate') %>
+<div class="row">
+    <div class="col-6 offset-3">
+        <h1>Inloggen</h1>
+        <form action="/inloggen" method="POST" class="validated-form" novalidate>
+            <div class="mb-3">
+                <label class="form-label" for="gebruikersnaam">Gebruikersnaam</label>
+                <input class="form-control" type="text" id="gebruikersnaam" name="username" required>
+                <div class="valid-feedback">
+                    Ziet er goed uit!
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="wachtwoord">Wachtwoord</label>
+                    <input class="form-control" type="password" id="wachtwoord" name="password" required>
+                    <div class="valid-feedback">
+                        Ziet er goed uit!
+                    </div>
+                    <button class="btn btn-success mt-3">Inloggen</button>
+        </form>
+    </div>
+</div>
