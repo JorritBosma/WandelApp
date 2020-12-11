@@ -24,8 +24,6 @@ module.exports.toonWandeling = async (req, res) => {
             path: 'auteur'
         }
     }).populate('auteur');
-    console.log(wandeling);
-    console.log(wandeling.auteur)
     if (!wandeling) {
         req.flash('error', 'Helaas, de wandeling is niet gevonden...');
         return res.redirect('/wandelingen');
