@@ -16,5 +16,3 @@ In the near future I will finish the app, deploy it and start using it with fami
 I learned to make controllers where all the function logic takes place and just call the functions in my routes.
 
 I restructured my routes using the router.route method (comes with Express).
-
-Implemented star ratings using Staribility found on GitHub. Still to be fixed (nice to have): leaving 0 stars validation (now it defaults to 1 star).
