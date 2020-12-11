@@ -5,16 +5,15 @@ const wrapAsync = require('../helpers/wrapAsync');
 const Gebruiker = require('../models/gebruiker');
 const gebruikers = require('../controllers/gebruikersController');
 
-router.get('/inschrijven', gebruikers.renderInschrijfForm);
+router.route('/inschrijven')
+    .get(gebruikers.renderInschrijfForm)
+    .post(wrapAsync(gebruikers.maakGebruiker))
 
-router.post('/inschrijven', wrapAsync(gebruikers.maakGebruiker));
-
-router.get('/inloggen', gebruikers.renderInlogscherm);
-
-router.post('/inloggen',
-    passport.authenticate
+router.route('/inloggen')
+    .get(gebruikers.renderInlogscherm)
+    .post(passport.authenticate
         ('local', { failureFlash: true, failureRedirect: '/inschrijven' }),
-    gebruikers.login);
+        gebruikers.login)
 
 router.get('/uitloggen', gebruikers.loguit);
 

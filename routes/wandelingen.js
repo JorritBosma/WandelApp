@@ -5,18 +5,17 @@ const Wandeling = require('../models/wandeling');
 const wandelingen = require('../controllers/wandelingController');
 const { isIngelogd, validateWandeling, isAuteur } = require('../middleware');
 
-router.get('/', wrapAsync(wandelingen.index));
+router.route('/')
+    .get(wrapAsync(wandelingen.index))
+    .post(isIngelogd, validateWandeling, wrapAsync(wandelingen.maakWandeling));
 
 router.get('/new', isIngelogd, wandelingen.renderNewForm);
 
-router.post('/', isIngelogd, validateWandeling, wrapAsync(wandelingen.maakWandeling));
-
-router.get('/:id', wrapAsync(wandelingen.toonWandeling));
+router.route('/:id')
+    .get(wrapAsync(wandelingen.toonWandeling))
+    .put(isIngelogd, isAuteur, validateWandeling, wrapAsync(wandelingen.wijzigWandeling))
+    .delete(isIngelogd, isAuteur, wrapAsync(wandelingen.wisWandeling));
 
 router.get('/:id/edit', isIngelogd, isAuteur, wrapAsync(wandelingen.renderEditForm));
-
-router.put('/:id', isIngelogd, isAuteur, validateWandeling, wrapAsync(wandelingen.wijzigWandeling));
-
-router.delete('/:id', isIngelogd, isAuteur, wrapAsync(wandelingen.wisWandeling));
 
 module.exports = router;
