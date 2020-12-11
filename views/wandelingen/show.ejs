@@ -1,4 +1,5 @@
 <%layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/css/stars.css">
 
 <div class="row">
     <div class="col-6">
@@ -14,6 +15,7 @@
                     <%= wandeling.bewegwijzering %> gemarkeerd.</li>
                 <li class="list-group-item">Bezoek voor meer informatie de <a href="<%= wandeling.website %>">website
                         van <%= wandeling.organisatie %>.</a></li>
+                <% if(huidigeGebruiker && wandeling.auteur.equals(huidigeGebruiker._id)) { %>
                 <div class="card-body">
                     <a class="card-link btn btn-warning" href="/wandelingen/<%=wandeling._id%>/edit ">Wijzig</a>
                     <form class="d-inline" action="/wandelingen/<%=wandeling._id%>?_method=DELETE" method="POST">
@@ -21,32 +23,58 @@
                     </form>
                     <a class="card-link btn btn-primary" href="/wandelingen">Terug</a>
                 </div>
+                <% } else { %>
+                <div class="card-body">
+                    <a class="card-link btn btn-primary" href="/wandelingen">Terug</a>
+                </div>
+                <% } %>
+
                 <div class="card-footer text-muted">Aangemaakt door: <%=wandeling.auteur.username%> </div>
         </div>
     </div>
     <div class="col-6">
+        <% if(huidigeGebruiker) { %>
         <h3>Beoordeel deze wandeling</h3>
         <form action="/wandelingen/<%=wandeling._id%>/recensies" method="POST" class="mb-3 validated-form" novalidate>
-            <div class="mb-3">
-                <label class="form-label" for="beoordeling">Beoordeling</label>
-                <input class="form-range" type="range" min="1" max="5" name="recensie[beoordeling]" id="beoordeling">
+            <div class="mt-4">
+                <fieldset class="starability-coinFlip">
+                    <input type="radio" id="no-rate" class="input-no-rate" name="recensie[beoordeling]" value="1"
+                        checked aria-label="No rating." />
+                    <input type="radio" id="first-rate1" name="recensie[beoordeling]" value="1" />
+                    <label for="first-rate1" title="Terrible">1 star</label>
+                    <input type="radio" id="first-rate2" name="recensie[beoordeling]" value="2" />
+                    <label for="first-rate2" title="Not good">2 stars</label>
+                    <input type="radio" id="first-rate3" name="recensie[beoordeling]" value="3" />
+                    <label for="first-rate3" title="Average">3 stars</label>
+                    <input type="radio" id="first-rate4" name="recensie[beoordeling]" value="4" />
+                    <label for="first-rate4" title="Very good">4 stars</label>
+                    <input type="radio" id="first-rate5" name="recensie[beoordeling]" value="5" />
+                    <label for="first-rate5" title="Amazing">5 stars</label>
+                </fieldset>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="body">Recensie</label>
+                <legend><label class="form-label" for="body">Recensie</label></legend>
                 <textarea class="form-control" name="recensie[body]" id="body" cols="30" rows="3" required></textarea>
                 <div class="valid-feedback">Lekker getypt hoor!</div>
             </div>
             <button class="btn btn-success">Opslaan</button>
         </form>
+        <% } %>
         <% for(let recensie of wandeling.recensies) {%>
         <div class="card mb-3">
             <div class="card-body">
-                <h5 class="card-title">Beoordeling: <%= recensie.beoordeling %> sterren</h5>
-                <p class="card-text">Recensie: <%= recensie.body %></p>
+                <h6 class="card-subtitle mb-2 text-muted"> <%= recensie.auteur.username%>s oordeel</h6>
+                <!-- <h5 class="card-title">Beoordeling: <%= recensie.beoordeling %> sterren</h5> -->
+                <p class="starability-result" data-rating="<%=recensie.beoordeling%>">
+                    Rated: <%=recensie.beoordeling%> stars
+                </p>
+                <p class="card-text"> <%= recensie.body %></p>
+                <% if(huidigeGebruiker && recensie.auteur.equals(huidigeGebruiker._id)){ %>
                 <form action="/wandelingen/<%= wandeling._id %>/recensies/<%= recensie._id %>?_method=DELETE"
                     method="POST">
                     <button class="btn btn-sm btn-danger">Wis</button>
                 </form>
+                <% } %>
             </div>
         </div>
         <% } %>
