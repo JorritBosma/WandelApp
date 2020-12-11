@@ -1,84 +1,85 @@
 <%layout('layouts/boilerplate') %>
-<div class="row">
-    <h1 class="text-center">Nieuwe wandeling</h1>
-    <div class="col-6 offset-3">
-        <form action="/wandelingen" method="POST" novalidate class="validated-form">
-            <div class="mb-3">
-                <label class="form-label" for="naam">Naam</label>
-                <input class="form-control" type="text" id="naam" name="wandeling[naam]" required>
-                <div class="valid-feedback">
-                    Ziet er goed uit!
+    <div class="row">
+        <h1 class="text-center">Nieuwe wandeling</h1>
+        <div class="col-6 offset-3">
+            <form action="/wandelingen" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label" for="naam">Naam</label>
+                    <input class="form-control" type="text" id="naam" name="wandeling[naam]" required>
+                    <div class="valid-feedback">
+                        Ziet er goed uit!
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="plaats">Plaats</label>
-                <input class="form-control" type="text" id="plaats" name="wandeling[plaats]" required>
-                <div class="valid-feedback">
-                    Ziet er goed uit!
+                <div class="mb-3">
+                    <label class="form-label" for="plaats">Plaats</label>
+                    <input class="form-control" type="text" id="plaats" name="wandeling[plaats]" required>
+                    <div class="valid-feedback">
+                        Ziet er goed uit!
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="gebied">Gebied</label>
-                <input class="form-control" type="text" id="gebied" name="wandeling[gebied]" required>
-                <div class="valid-feedback">
-                    Ziet er goed uit!
+                <div class="mb-3">
+                    <label class="form-label" for="gebied">Gebied</label>
+                    <input class="form-control" type="text" id="gebied" name="wandeling[gebied]" required>
+                    <div class="valid-feedback">
+                        Ziet er goed uit!
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="provincie">Provincie</label>
-                <input class="form-control" type="text" id="provincie" name="wandeling[provincie]" required>
-                <div class="valid-feedback">
-                    Ziet er goed uit!
+                <div class="mb-3">
+                    <label class="form-label" for="provincie">Provincie</label>
+                    <input class="form-control" type="text" id="provincie" name="wandeling[provincie]" required>
+                    <div class="valid-feedback">
+                        Ziet er goed uit!
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="afstand">Afstand</label>
-                <div class="input-group">
-                    <input id="afstand" type="text" class="form-control" name="wandeling[afstand]" placeholder="0,0"
-                        aria-label="afstand" aria-describedby="afstand-label" required>
-                    <span class="input-group-text" id="afstand-label">km</span>
+                <div class="mb-3">
+                    <label class="form-label" for="afstand">Afstand</label>
+                    <div class="input-group">
+                        <input id="afstand" type="text" class="form-control" name="wandeling[afstand]" placeholder="0,0"
+                            aria-label="afstand" aria-describedby="afstand-label" required>
+                        <span class="input-group-text" id="afstand-label">km</span>
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="foto">Foto (url)</label>
-                <input class="form-control" type="text" id="foto" name="wandeling[foto]" required>
-                <div class="valid-feedback">
-                    Ziet er goed uit!
+                <input type="file" name="foto" id="" multiple>
+                <!-- <div class="mb-3">
+                    <label class="form-label" for="foto">Foto (url)</label>
+                    <input class="form-control" type="text" id="foto" name="wandeling[foto]" required>
+                    <div class="valid-feedback">
+                        Ziet er goed uit!
+                    </div>
+                </div> -->
+                <div class="mb-3">
+                    <label class="form-label" for="bewegwijzering">Kleur bewegwijzering</label>
+                    <input class="form-control" type="text" id="bewegwijzering" name="wandeling[bewegwijzering]" required>
+                    <div class="valid-feedback">
+                        Ziet er goed uit!
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="bewegwijzering">Kleur bewegwijzering</label>
-                <input class="form-control" type="text" id="bewegwijzering" name="wandeling[bewegwijzering]" required>
-                <div class="valid-feedback">
-                    Ziet er goed uit!
+                <div class="mb-3">
+                    <label class="form-label" for="organisatie">Terreinbeheerder</label>
+                    <input class="form-control" type="text" id="organisatie" name="wandeling[organisatie]" required>
+                    <div class="valid-feedback">
+                        Ziet er goed uit!
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="organisatie">Terreinbeheerder</label>
-                <input class="form-control" type="text" id="organisatie" name="wandeling[organisatie]" required>
-                <div class="valid-feedback">
-                    Ziet er goed uit!
+                <div class="mb-3">
+                    <label class="form-label" for="website">Link</label>
+                    <input class="form-control" type="text" id="website" name="wandeling[website]" required>
+                    <div class="valid-feedback">
+                        Ziet er goed uit!
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="website">Link</label>
-                <input class="form-control" type="text" id="website" name="wandeling[website]" required>
-                <div class="valid-feedback">
-                    Ziet er goed uit!
+                <div class="mb-3">
+                    <label class="form-label" for="beschrijving">Beschrijving</label>
+                    <textarea class="form-control" type="text" id="beschrijving" name="wandeling[beschrijving] required"
+                        required></textarea>
+                    <div class="valid-feedback">
+                        Ziet er goed uit!
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="beschrijving">Beschrijving</label>
-                <textarea class="form-control" type="text" id="beschrijving" name="wandeling[beschrijving] required"
-                    required></textarea>
-                <div class="valid-feedback">
-                    Ziet er goed uit!
+                <div class="mb-3">
+                    <button class="btn btn-success">Voeg toe</button>
                 </div>
-            </div>
-            <div class="mb-3">
-                <button class="btn btn-success">Voeg toe</button>
-            </div>
-        </form>
-        <a href="/wandelingen">Alle wandelingen</a>
+            </form>
+            <a href="/wandelingen">Alle wandelingen</a>
+        </div>
     </div>
-</div>
