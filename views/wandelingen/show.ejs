@@ -14,6 +14,7 @@
                     <%= wandeling.bewegwijzering %> gemarkeerd.</li>
                 <li class="list-group-item">Bezoek voor meer informatie de <a href="<%= wandeling.website %>">website
                         van <%= wandeling.organisatie %>.</a></li>
+                <% if(huidigeGebruiker && wandeling.auteur.equals(huidigeGebruiker._id)) { %>
                 <div class="card-body">
                     <a class="card-link btn btn-warning" href="/wandelingen/<%=wandeling._id%>/edit ">Wijzig</a>
                     <form class="d-inline" action="/wandelingen/<%=wandeling._id%>?_method=DELETE" method="POST">
@@ -21,10 +22,17 @@
                     </form>
                     <a class="card-link btn btn-primary" href="/wandelingen">Terug</a>
                 </div>
+                <% } else { %>
+                <div class="card-body">
+                    <a class="card-link btn btn-primary" href="/wandelingen">Terug</a>
+                </div>
+                <% } %>
+
                 <div class="card-footer text-muted">Aangemaakt door: <%=wandeling.auteur.username%> </div>
         </div>
     </div>
     <div class="col-6">
+        <% if(huidigeGebruiker) { %>
         <h3>Beoordeel deze wandeling</h3>
         <form action="/wandelingen/<%=wandeling._id%>/recensies" method="POST" class="mb-3 validated-form" novalidate>
             <div class="mb-3">
@@ -38,15 +46,19 @@
             </div>
             <button class="btn btn-success">Opslaan</button>
         </form>
+        <% } %>
         <% for(let recensie of wandeling.recensies) {%>
         <div class="card mb-3">
             <div class="card-body">
                 <h5 class="card-title">Beoordeling: <%= recensie.beoordeling %> sterren</h5>
-                <p class="card-text">Recensie: <%= recensie.body %></p>
+                <h6 class="card-subtitle mb-2 text-muted"> Recensie van <%= recensie.auteur.username%></h6>
+                <p class="card-text"> <%= recensie.body %></p>
+                <% if(huidigeGebruiker && recensie.auteur.equals(huidigeGebruiker._id)){ %>
                 <form action="/wandelingen/<%= wandeling._id %>/recensies/<%= recensie._id %>?_method=DELETE"
                     method="POST">
                     <button class="btn btn-sm btn-danger">Wis</button>
                 </form>
+                <% } %>
             </div>
         </div>
         <% } %>
