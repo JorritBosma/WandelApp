@@ -2,14 +2,18 @@ const mongoose = require('mongoose');
 const Recensie = require('./recensie');
 const Schema = mongoose.Schema;
 
+const PlaatjeSchema = new Schema({
+    url: String,
+    filename: String,
+});
+
+PlaatjeSchema.virtual('thumbnail').get(function () {
+    return this.url.replace('/upload', '/upload/w_200');
+});
+
 const WandelingSchema = new Schema({
     naam: String,
-    plaatjes: [
-        {
-            url: String,
-            filename: String,
-        },
-    ],
+    plaatjes: [PlaatjeSchema],
     plaats: String,
     gebied: String,
     provincie: String,

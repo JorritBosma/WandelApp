@@ -77,8 +77,17 @@
             <div class="mb-3">
                 <label for="plaatje" class="form-label">Extra foto's toevoegen</label>
                 <input class="form-control" type="file" id="plaatje" name="plaatje" multiple>
-                </div>
-                <div class="mb-3">
+            </div>
+            <div class="mb-3">
+                <% wandeling.plaatjes.forEach(function(img, i) {%>
+                    <img src="<%=img.thumbnail%>" class="img-thumbnail" alt="">
+                    <div class="form-check-inline">
+                        <input type="checkbox" id="image-<%=i%>" name="wisPlaatjes[]" value="<%=img.filename%>">
+                        <label for="image-<%=i%>">Wis foto</label>
+                    </div>
+                    <% }) %>
+                        </div>
+                        <div class=" mb-3">
                 <button class="btn btn-info">Opslaan</button>
             </div>
         </form>

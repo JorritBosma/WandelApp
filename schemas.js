@@ -12,7 +12,8 @@ module.exports.wandelingSchema = Joi.object({
         beschrijving: Joi.string().required(),
         organisatie: Joi.string().required(),
         bewegwijzering: Joi.string().required()
-    }).required()
+    }).required(),
+    wisPlaatjes: Joi.array()
 });
 
 module.exports.recensieSchema = Joi.object({
