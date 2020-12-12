@@ -2,7 +2,8 @@
 <div class="row">
     <h1 class="text-center">Wijzig wandeling</h1>
     <div class="col-6 offset-3">
-        <form action="/wandelingen/<%= wandeling._id %>?_method=PUT " method="POST" novalidate class="validated-form">
+        <form action="/wandelingen/<%= wandeling._id %>?_method=PUT " method="POST" novalidate class="validated-form"
+            enctype="multipart/form-data">
             <div class="mb-3">
                 <label class="form-label" for="naam">Naam</label>
                 <input class="form-control" type="text" id="naam" name="wandeling[naam]" value="<%=wandeling.naam%>"
@@ -45,12 +46,8 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="foto">Foto (url)</label>
-                <input class="form-control" type="url" id="foto" name="wandeling[foto]" value="<%=wandeling.foto%>"
-                    required>
-                <div class="valid-feedback">
-                    Ziet er goed uit!
-                </div>
+                <label class="form-label" for="plaatje">Voeg foto's toe</label>
+                <input type="file" name="plaatje" id="plaatje" multiple>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="bewegwijzering">Kleur bewegwijzering</label>

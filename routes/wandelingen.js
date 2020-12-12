@@ -17,7 +17,7 @@ router.get('/new', isIngelogd, wandelingen.renderNewForm);
 
 router.route('/:id')
     .get(wrapAsync(wandelingen.toonWandeling))
-    .put(isIngelogd, isAuteur, validateWandeling, wrapAsync(wandelingen.wijzigWandeling))
+    .put(isIngelogd, isAuteur, upload.array('plaatje'), validateWandeling, wrapAsync(wandelingen.wijzigWandeling))
     .delete(isIngelogd, isAuteur, wrapAsync(wandelingen.wisWandeling));
 
 router.get('/:id/edit', isIngelogd, isAuteur, wrapAsync(wandelingen.renderEditForm));

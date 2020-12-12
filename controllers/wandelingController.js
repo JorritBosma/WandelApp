@@ -46,6 +46,9 @@ module.exports.renderEditForm = async (req, res) => {
 module.exports.wijzigWandeling = async (req, res) => {
     const { id } = req.params;
     const wandeling = await Wandeling.findByIdAndUpdate(id, { ...req.body.wandeling });
+    const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    wandeling.plaatjes.push(...imgs);
+    await wandeling.save();
     req.flash('success', 'Wandeling gewijzigd!');
     res.redirect(`/wandelingen/${wandeling._id}`)
 };
