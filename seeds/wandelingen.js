@@ -2,7 +2,12 @@ module.exports = [
     {
         "naam": "Heide en Vennen",
         "plaats": "Drouwen",
-        "foto": "http://3.bp.blogspot.com/-mfhJdBRccEY/UEph2j5JWiI/AAAAAAAAE3k/9bPKprZAbQM/s1600/boomkroonpad+15.jpg",
+        "plaatjes": [
+            {
+                url: "https://res.cloudinary.com/dc5aih2mm/image/upload/v1607779739/WandelApp/HeideEnVennen_ev9wzw.jpg",
+                filename: "WandelApp/HeideEnVennen_ev9wzw"
+            }
+        ],
         "gebied": "Hondsrug",
         "provincie": "Drenthe",
         "website": "https://www.staatsbosbeheer.nl/routes/hondsrug/wandelroute-heide-en-vennen",
@@ -15,7 +20,12 @@ module.exports = [
     {
         "naam": "Bomen",
         "plaats": "Drouwen",
-        "foto": "https://www.staatsbosbeheer.nl/-/media/hondsrug/hondsrug-1.jpg",
+        "plaatjes": [
+            {
+                url: "https://res.cloudinary.com/dc5aih2mm/image/upload/v1607780000/WandelApp/Bomen_mz69zh.jpg",
+                filename: "WandelApp/Bomen_mz69zh"
+            }
+        ],
         "gebied": "Hondsrug",
         "provincie": "Drenthe",
         "website": "https://www.staatsbosbeheer.nl/routes/hondsrug/wandelroute-bomen",
@@ -28,7 +38,12 @@ module.exports = [
     {
         "naam": "Rondje Tweelingen",
         "plaats": "Schoonloo",
-        "foto": "https://www.staatsbosbeheer.nl/-/media/14-florafauna/vogels/grote-bonte-specht-bij-boomholte.jpg",
+        "plaatjes": [
+            {
+                url: "https://res.cloudinary.com/dc5aih2mm/image/upload/v1607780095/WandelApp/RondjeTweelingen_hjwpn8.jpg",
+                filename: "WandelApp/RondjeTweelingen_hjwpn8"
+            }
+        ],
         "gebied": "Hart van Drenthe",
         "provincie": "Drenthe",
         "websitewebsite": "https://www.staatsbosbeheer.nl/routes/hart-van-drenthe/wandelroute-rondje-tweelingen",
@@ -41,7 +56,12 @@ module.exports = [
     {
         "naam": "Melkwegpad",
         "plaats": "Hooghalen",
-        "foto": "https://hondsdol.nl/wp-content/uploads/2018/02/Hart-van-Drenthe-5.jpg",
+        "plaatjes": [
+            {
+                url: "https://res.cloudinary.com/dc5aih2mm/image/upload/v1607780186/WandelApp/MelkwegPad_q06cc8.jpg",
+                filename: "WandelApp/MelkwegPad_q06cc8"
+            }
+        ],
         "gebied": "Hart van Drenthe",
         "provincie": "Drenthe",
         "website": "https://www.staatsbosbeheer.nl/routes/hart-van-drenthe/wandelroute-melkwegpad",

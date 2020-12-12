@@ -20,7 +20,7 @@ const seedDB = async () => {
         const wandeling = new Wandeling({
             naam: `${route.naam}`,
             plaats: `${route.plaats}`,
-            foto: `${route.foto}`,
+            plaatjes: `${route.plaatjes}`,
             gebied: `${route.gebied}`,
             provincie: `${route.provincie}`,
             website: `${route.website}`,

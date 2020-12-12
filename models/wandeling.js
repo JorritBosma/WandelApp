@@ -7,8 +7,8 @@ const WandelingSchema = new Schema({
     plaatjes: [
         {
             url: String,
-            filename: String
-        }
+            filename: String,
+        },
     ],
     plaats: String,
     gebied: String,
