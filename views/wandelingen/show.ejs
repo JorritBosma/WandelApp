@@ -48,8 +48,7 @@
 
                 <div class="card-footer text-muted">Aangemaakt door: <%=wandeling.auteur.username%> </div>
         </div>
-    </div>
-    <div class="col-6">
+        <div class="col-6">
         <% if(huidigeGebruiker) { %>
         <h3>Beoordeel deze wandeling</h3>
         <form action="/wandelingen/<%=wandeling._id%>/recensies" method="POST" class="mb-3 validated-form" novalidate>
