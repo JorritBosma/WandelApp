@@ -12,7 +12,14 @@ bosma.jorrit@gmail.com
 
 In the near future I will finish the app, deploy it and start using it with family and friends to share nice walks in the North of the Netherlands.
 
-# Controllers and stars
-I learned to make controllers where all the function logic takes place and just call the functions in my routes.
+# Extra wishes:
+Limit the number and the size of uploaded images!
+Cropping/resizing images in carousel.
+# Images
+Had some fun creating CRUD for images with Cloudinary. Reseeding went wrong, however, don't know why because I use a different method than Colt.
 
-I restructured my routes using the router.route method (comes with Express).
+Made the wrong decision to delete my wandelings collection in MongoDB and reseed it, but that did not work. Tried it by making a json out of my js-file, didn't work either. 
+
+Ended up seeding the 'wandelings' collection from an earlier branch (GitHub Hooray!), deleted all the wandelings and recreated them through the app while uploading the images correctly to Cloudinary. A workaround which would have been the best choice when I got stuck in the first place...
+
+Another lesson learned -> think thrice before deleting collections, because your reseeding might not work with the new model.

@@ -2,7 +2,8 @@
 <div class="row">
     <h1 class="text-center">Wijzig wandeling</h1>
     <div class="col-6 offset-3">
-        <form action="/wandelingen/<%= wandeling._id %>?_method=PUT " method="POST" novalidate class="validated-form">
+        <form action="/wandelingen/<%= wandeling._id %>?_method=PUT " method="POST" novalidate class="validated-form"
+            enctype="multipart/form-data">
             <div class="mb-3">
                 <label class="form-label" for="naam">Naam</label>
                 <input class="form-control" type="text" id="naam" name="wandeling[naam]" value="<%=wandeling.naam%>"
@@ -45,14 +46,6 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="foto">Foto (url)</label>
-                <input class="form-control" type="url" id="foto" name="wandeling[foto]" value="<%=wandeling.foto%>"
-                    required>
-                <div class="valid-feedback">
-                    Ziet er goed uit!
-                </div>
-            </div>
-            <div class="mb-3">
                 <label class="form-label" for="bewegwijzering">Kleur bewegwijzering</label>
                 <input class="form-control" type="text" id="bewegwijzering" name="wandeling[bewegwijzering]"
                     value="<%=wandeling.bewegwijzering%>" required>
@@ -82,6 +75,19 @@
                 </div>
             </div>
             <div class="mb-3">
+                <label for="plaatje" class="form-label">Extra foto's toevoegen</label>
+                <input class="form-control" type="file" id="plaatje" name="plaatje" multiple>
+            </div>
+            <div class="mb-3">
+                <% wandeling.plaatjes.forEach(function(img, i) {%>
+                    <img src="<%=img.thumbnail%>" class="img-thumbnail" alt="">
+                    <div class="form-check-inline">
+                        <input type="checkbox" id="image-<%=i%>" name="wisPlaatjes[]" value="<%=img.filename%>">
+                        <label for="image-<%=i%>">Wis foto</label>
+                    </div>
+                    <% }) %>
+                        </div>
+                        <div class=" mb-3">
                 <button class="btn btn-info">Opslaan</button>
             </div>
         </form>
