@@ -9,8 +9,10 @@ cloudinary.config({
 
 const storage = new CloudinaryStorage({
     cloudinary,
-    folder: 'WandelApp',
-    allowedFormats: ['jpeg', 'png', 'jpg']
+    params: {
+        folder: 'WandelApp',
+        allowedFormats: ['jpeg', 'png', 'jpg']
+    }
 });
 
 module.exports = {

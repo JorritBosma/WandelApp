@@ -3,7 +3,7 @@ const Joi = require('joi');
 module.exports.wandelingSchema = Joi.object({
     wandeling: Joi.object({
         naam: Joi.string().required(),
-        foto: Joi.string().required(),
+        // plaatje: Joi.string().required(),
         plaats: Joi.string().required(),
         gebied: Joi.string().required(),
         provincie: Joi.string().required(),

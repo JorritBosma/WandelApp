@@ -4,7 +4,12 @@ const Schema = mongoose.Schema;
 
 const WandelingSchema = new Schema({
     naam: String,
-    foto: String,
+    plaatjes: [
+        {
+            url: String,
+            filename: String
+        }
+    ],
     plaats: String,
     gebied: String,
     provincie: String,

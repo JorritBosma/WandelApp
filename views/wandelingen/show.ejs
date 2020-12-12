@@ -4,7 +4,9 @@
 <div class="row">
     <div class="col-6">
         <div class="card mb-3">
-            <img src="<%=wandeling.foto%>" class="card-img-top" alt="Een foto van de wandeling">
+            <% for (let plaatje of wandeling.plaatjes) { %>
+                <img src="<%=plaatje.url%>" class="card-img-top" alt="Een foto van de wandeling">
+                <% } %>
             <div class="card-body">
                 <h5 class="card-title"><%=wandeling.naam%>, <%= wandeling.gebied %>, <%= wandeling.provincie %> </h5>
 

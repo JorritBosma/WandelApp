@@ -11,8 +11,10 @@ module.exports.renderNewForm = (req, res) => {
 
 module.exports.maakWandeling = async (req, res, next) => {
     const wandeling = new Wandeling(req.body.wandeling);
+    wandeling.plaatjes = req.files.map(f => ({ url: f.path, filename: f.filename }));
     wandeling.auteur = req.user._id;
     await wandeling.save();
+    console.log(wandeling);
     req.flash('success', 'Nieuwe wandeling aangemaakt!');
     res.redirect(`wandelingen/${wandeling._id}`)
 };

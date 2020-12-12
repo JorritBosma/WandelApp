@@ -10,11 +10,8 @@ const upload = multer({ storage });
 
 router.route('/')
     .get(wrapAsync(wandelingen.index))
-    // .post(isIngelogd, validateWandeling, wrapAsync(wandelingen.maakWandeling));
-    .post(upload.array('foto'), (req, res) => {
-        console.log(req.body, req.files);
-        res.send('Het werkt!');
-    })
+    .post(isIngelogd, upload.array('plaatje'), validateWandeling, wrapAsync(wandelingen.maakWandeling));
+
 
 router.get('/new', isIngelogd, wandelingen.renderNewForm);
 
