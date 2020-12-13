@@ -1,21 +1,33 @@
 <% layout('layouts/boilerplate') %>
-<div class="row">
-    <div class="col-6 offset-3">
-        <h1>Inloggen</h1>
-        <form action="/inloggen" method="POST" class="validated-form" novalidate>
-            <div class="mb-3">
-                <label class="form-label" for="gebruikersnaam">Gebruikersnaam</label>
-                <input class="form-control" type="text" id="gebruikersnaam" name="username" required>
-                <div class="valid-feedback">
-                    Ziet er goed uit!
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+            <div class="card shadow">
+                <img src="https://images.unsplash.com/photo-1542841791-77f33b752ef1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                    alt="" class="card-img-top p-0">
+                <h5 class="card-title mt-3 mx-3">Inloggen</h5>
+                <div class="card-body">
+                    <form action="/inloggen" method="POST" class="validated-form px-3" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label" for="gebruikersnaam">Gebruikersnaam</label>
+                            <input class="form-control" type="text" id="gebruikersnaam" name="username" autofocus required>
+                                <div class="valid-feedback">
+                                    Ziet er goed uit!
+                                </div>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label" for="wachtwoord">Wachtwoord</label>
+                            <input class="form-control" type="password" id="wachtwoord" name="password" required>
+                                <div class="valid-feedback">
+                                    Ziet er goed uit!
+                                </div>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-success my-3">Inloggen</button>
+                        </div>
+                     </form>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="wachtwoord">Wachtwoord</label>
-                    <input class="form-control" type="password" id="wachtwoord" name="password" required>
-                    <div class="valid-feedback">
-                        Ziet er goed uit!
-                    </div>
-                    <button class="btn btn-success mt-3">Inloggen</button>
-        </form>
-    </div>
-</div>
+            </div>
+        </div>
+        </div>
+        </div>
