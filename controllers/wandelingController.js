@@ -18,15 +18,14 @@ module.exports.maakWandeling = async (req, res, next) => {
         query: req.body.wandeling.plaats,
         limit: 1
     }).send();
-    console.log(geoData.body.features[0].geometry.coordinates);
-    res.send('GAAT GOED JOH!')
-    // const wandeling = new Wandeling(req.body.wandeling);
-    // wandeling.plaatjes = req.files.map(f => ({ url: f.path, filename: f.filename }));
-    // wandeling.auteur = req.user._id;
-    // await wandeling.save();
-    // console.log(wandeling);
-    // req.flash('success', 'Nieuwe wandeling aangemaakt!');
-    // res.redirect(`wandelingen/${wandeling._id}`)
+    const wandeling = new Wandeling(req.body.wandeling);
+    wandeling.geometry = geoData.body.features[0].geometry;
+    wandeling.plaatjes = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    wandeling.auteur = req.user._id;
+    await wandeling.save();
+    console.log(wandeling);
+    req.flash('success', 'Nieuwe wandeling aangemaakt!');
+    res.redirect(`wandelingen/${wandeling._id}`)
 };
 
 module.exports.toonWandeling = async (req, res) => {
@@ -40,6 +39,7 @@ module.exports.toonWandeling = async (req, res) => {
         req.flash('error', 'Helaas, de wandeling is niet gevonden...');
         return res.redirect('/wandelingen');
     }
+    console.log(wandeling.geometry);
     res.render('wandelingen/show', { wandeling });
 };
 

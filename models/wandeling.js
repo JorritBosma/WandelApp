@@ -14,6 +14,17 @@ PlaatjeSchema.virtual('thumbnail').get(function () {
 const WandelingSchema = new Schema({
     naam: String,
     plaatjes: [PlaatjeSchema],
+    geometry: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            required: true
+        },
+        coordinates: {
+            type: [Number],
+            required: true
+        }
+    },
     plaats: String,
     gebied: String,
     provincie: String,
