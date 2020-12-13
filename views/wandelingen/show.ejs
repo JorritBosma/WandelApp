@@ -31,6 +31,8 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item">De wandeling is <%= wandeling.afstand %> km lang en is
                 <%= wandeling.bewegwijzering %> gemarkeerd.</li>
+            <li class="list-group-item">Het adres van het beginpunt van de wandeling is <%=wandeling.plaats%>.
+            </li>
             <li class="list-group-item">Bezoek voor meer informatie de <a href="<%= wandeling.website %>">website
                     van <%= wandeling.organisatie %>.</a></li>
             <% if(huidigeGebruiker && wandeling.auteur.equals(huidigeGebruiker._id)) { %>
@@ -81,7 +83,7 @@
         <div class="card mb-3">
             <div class="card-body">
                 <h6 class="card-subtitle mb-2 text-muted"> <%= recensie.auteur.username%>s oordeel</h6>
-                <!-- <h5 class="card-title">Beoordeling: <%= recensie.beoordeling %> sterren</h5> -->
+            
                 <p class="starability-result" data-rating="<%=recensie.beoordeling%>">
                     Rated: <%=recensie.beoordeling%> stars
                 </p>

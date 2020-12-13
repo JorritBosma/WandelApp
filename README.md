@@ -15,11 +15,12 @@ In the near future I will finish the app, deploy it and start using it with fami
 # Extra wishes:
 Limit the number and the size of uploaded images!
 Cropping/resizing images in carousel.
-# Images
-Had some fun creating CRUD for images with Cloudinary. Reseeding went wrong, however, don't know why because I use a different method than Colt.
+Make map on show-page responsive instead of fixed width/height (probably in Styles Cleanup section).
+Handle geodata errors (what if place doesn't exist -> flash message? or fallback to default behaviour?).
+Handle geodata on edit (what if a user changes the location during edit? The app does not handle that right now)
+# Maps
+Implemented geocoding. Had to seed my database manually, because my index.js seeder seems to be broken. No big problem, I only have a handful of instances.
 
-Made the wrong decision to delete my wandelings collection in MongoDB and reseed it, but that did not work. Tried it by making a json out of my js-file, didn't work either. 
+My index page was broken as well because of instances without images, because the showpage wants to render index of 0, the first image in the array, and cannot handle empty arrays. Fixed it myself with a simple if-condition- if(wandeling.plaatjes.length>0) and found out Colt handled this in a later video.
 
-Ended up seeding the 'wandelings' collection from an earlier branch (GitHub Hooray!), deleted all the wandelings and recreated them through the app while uploading the images correctly to Cloudinary. A workaround which would have been the best choice when I got stuck in the first place...
-
-Another lesson learned -> think thrice before deleting collections, because your reseeding might not work with the new model.
+Responsiveness map and error handling need work, I will put it under Extra wishes for now.
