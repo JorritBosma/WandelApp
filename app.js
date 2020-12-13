@@ -15,13 +15,17 @@ const LokaleStrategie = require('passport-local');
 const Gebruiker = require('./models/gebruiker');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
+const MongoStore = require('connect-mongo')(session);
 
 const gebruikerRoutes = require('./routes/gebruikers');
 const wandelingRoutes = require('./routes/wandelingen');
 const recensieRoutes = require('./routes/recensies');
 const { allowedNodeEnvironmentFlags } = require('process');
 
-mongoose.connect('mongodb://localhost:27017/wandelapp', {
+// Paste in dbUrl in mongoose.connect to connect to Atlas.
+// const dbUrl = process.env.DB_URL;
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/wandelapp';
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -45,9 +49,22 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize());
 
+const secret = process.env.SECRET || 'ikbenheelgeheim!';
+
+const store = new MongoStore({
+    url: dbUrl,
+    secret,
+    touchAfter: 24 * 60 * 60
+});
+
+store.on("error", function (e) {
+    console.log("SESSION STORE ERROR", e)
+});
+
 const sessionConfig = {
+    store,
     name: 'zitting',
-    secret: 'ikbenheelgeheim!',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -146,6 +163,7 @@ app.use((err, req, res, nest) => {
     res.status(statusCode).render('error', { err });
 });
 
-app.listen(8080, (req, res) => {
-    console.log('Poortje 8080 luistert weer mensen!!!')
+const port = process.env.PORT || 8080
+app.listen(port, (req, res) => {
+    console.log(`Poortje ${port} luistert weer mensen!!!`)
 });
