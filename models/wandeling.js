@@ -11,9 +11,22 @@ PlaatjeSchema.virtual('thumbnail').get(function () {
     return this.url.replace('/upload', '/upload/w_200');
 });
 
+const opts = { toJSON: { virtuals: true } };
+
 const WandelingSchema = new Schema({
     naam: String,
     plaatjes: [PlaatjeSchema],
+    geometry: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            required: true
+        },
+        coordinates: {
+            type: [Number],
+            required: true
+        }
+    },
     plaats: String,
     gebied: String,
     provincie: String,
@@ -32,6 +45,11 @@ const WandelingSchema = new Schema({
             ref: 'Recensie'
         }
     ]
+}, opts);
+
+WandelingSchema.virtual('properties.popUpMarkup').get(function () {
+    return `<strong><a href="/wandelingen/${this._id}">${this.naam}</a></strong>
+            <p>${this.afstand} km lang</p>`;
 });
 
 WandelingSchema.post('findOneAndDelete', async function (doc) {

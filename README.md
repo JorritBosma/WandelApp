@@ -15,11 +15,10 @@ In the near future I will finish the app, deploy it and start using it with fami
 # Extra wishes:
 Limit the number and the size of uploaded images!
 Cropping/resizing images in carousel.
-# Images
-Had some fun creating CRUD for images with Cloudinary. Reseeding went wrong, however, don't know why because I use a different method than Colt.
+Make map on show-page responsive instead of fixed width/height (probably in Styles Cleanup section).
+Handle geodata errors (what if place doesn't exist -> flash message? or fallback to default behaviour?).
+Handle geodata on edit (what if a user changes the location during edit? The app does not handle that right now).
+Fix problem cluster map: more wandelingen on one specific location will not show up seperately. -> right if-conditional, if coordinates already exist, tweak them until they do not exist in the database and are close to the original location, but distinguishable enough from the other wandelingen which start from there. -> Other solution: make some kind of modal/popup appear so you can cycle through the wandelingen over there on the cluster map. Look on mapbox for solutions.
 
-Made the wrong decision to delete my wandelings collection in MongoDB and reseed it, but that did not work. Tried it by making a json out of my js-file, didn't work either. 
-
-Ended up seeding the 'wandelings' collection from an earlier branch (GitHub Hooray!), deleted all the wandelings and recreated them through the app while uploading the images correctly to Cloudinary. A workaround which would have been the best choice when I got stuck in the first place...
-
-Another lesson learned -> think thrice before deleting collections, because your reseeding might not work with the new model.
+# Cluster map
+Easy to follow, good to learn how to learn existing code, play around with it and tweak it. When there is more data (wandelingen) I'll have to retweak the cluster map for sure. Also, there can be more wandelingen on one geolocation, so I'll have to come up with a solution for that. Some JS probably, if coordinates already exist, change them just a bit randomly untill they find a spot close to the existing wandeling(en) on that location but are easily distinguishable. Or, have some kind of popup/dropdown/modal appear so a user can cycle through wandelingen on one location on the map and click on links.This is an extra wish, but pretty high on the list to make my cluster map work, because it is very typical to have one adress for a handful of wandelingen.

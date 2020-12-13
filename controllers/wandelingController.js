@@ -1,5 +1,8 @@
 const Wandeling = require('../models/wandeling');
 const { cloudinary } = require('../cloudinary');
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 
 module.exports.index = async (req, res) => {
     const wandelingen = await Wandeling.find({});
@@ -11,7 +14,12 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.maakWandeling = async (req, res, next) => {
+    const geoData = await geocoder.forwardGeocode({
+        query: req.body.wandeling.plaats,
+        limit: 1
+    }).send();
     const wandeling = new Wandeling(req.body.wandeling);
+    wandeling.geometry = geoData.body.features[0].geometry;
     wandeling.plaatjes = req.files.map(f => ({ url: f.path, filename: f.filename }));
     wandeling.auteur = req.user._id;
     await wandeling.save();
@@ -31,6 +39,7 @@ module.exports.toonWandeling = async (req, res) => {
         req.flash('error', 'Helaas, de wandeling is niet gevonden...');
         return res.redirect('/wandelingen');
     }
+    console.log(wandeling.geometry);
     res.render('wandelingen/show', { wandeling });
 };
 

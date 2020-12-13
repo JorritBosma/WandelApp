@@ -24,6 +24,10 @@ const seedDB = async () => {
             gebied: `${route.gebied}`,
             provincie: `${route.provincie}`,
             website: `${route.website}`,
+            geometry: {
+                type: "Point",
+                coordinates: wandeling.geometry.coordinates
+            },
             afstand: `${route.afstand}`,
             beschrijving: `${route.beschrijving}`,
             bewegwijzering: `${route.bewegwijzering}`,

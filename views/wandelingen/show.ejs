@@ -3,52 +3,55 @@
 
 <div class="row">
     <div class="col-6">
+        <div id='map' style='width: 400px; height: 300px;'></div>
         <div id="wandelingCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <% wandeling.plaatjes.forEach((plaatje, i)=> {%>
-                    <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
-                        <img src="<%=plaatje.url%>" class="d-block w-100" alt="">
-                    </div>
-                    <% }); %>
+                <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
+                    <img src="<%=plaatje.url%>" class="d-block w-100" alt="">
+                </div>
+                <% }); %>
             </div>
             <% if(wandeling.plaatjes.length> 1) {%>
-                <a class="carousel-control-prev" href="#wandelingCarousel" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#wandelingCarousel" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </a>
-                <% } %>
+            <a class="carousel-control-prev" href="#wandelingCarousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#wandelingCarousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+            <% } %>
         </div>
+        <div class="card-body">
+            <h5 class="card-title"><%=wandeling.naam%>, <%= wandeling.gebied %>, <%= wandeling.provincie %> </h5>
+
+            <p class="card-text"><%=wandeling.beschrijving%></p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">De wandeling is <%= wandeling.afstand %> km lang en is
+                <%= wandeling.bewegwijzering %> gemarkeerd.</li>
+            <li class="list-group-item">Het adres van het beginpunt van de wandeling is <%=wandeling.plaats%>.
+            </li>
+            <li class="list-group-item">Bezoek voor meer informatie de <a href="<%= wandeling.website %>">website
+                    van <%= wandeling.organisatie %>.</a></li>
+            <% if(huidigeGebruiker && wandeling.auteur.equals(huidigeGebruiker._id)) { %>
             <div class="card-body">
-                <h5 class="card-title"><%=wandeling.naam%>, <%= wandeling.gebied %>, <%= wandeling.provincie %> </h5>
-
-                <p class="card-text"><%=wandeling.beschrijving%></p>
+                <a class="card-link btn btn-warning" href="/wandelingen/<%=wandeling._id%>/edit ">Wijzig</a>
+                <form class="d-inline" action="/wandelingen/<%=wandeling._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Wis</button>
+                </form>
+                <a class="card-link btn btn-primary" href="/wandelingen">Terug</a>
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">De wandeling is <%= wandeling.afstand %> km lang en is
-                    <%= wandeling.bewegwijzering %> gemarkeerd.</li>
-                <li class="list-group-item">Bezoek voor meer informatie de <a href="<%= wandeling.website %>">website
-                        van <%= wandeling.organisatie %>.</a></li>
-                <% if(huidigeGebruiker && wandeling.auteur.equals(huidigeGebruiker._id)) { %>
-                <div class="card-body">
-                    <a class="card-link btn btn-warning" href="/wandelingen/<%=wandeling._id%>/edit ">Wijzig</a>
-                    <form class="d-inline" action="/wandelingen/<%=wandeling._id%>?_method=DELETE" method="POST">
-                        <button class="btn btn-danger">Wis</button>
-                    </form>
-                    <a class="card-link btn btn-primary" href="/wandelingen">Terug</a>
-                </div>
-                <% } else { %>
-                <div class="card-body">
-                    <a class="card-link btn btn-primary" href="/wandelingen">Terug</a>
-                </div>
-                <% } %>
+            <% } else { %>
+            <div class="card-body">
+                <a class="card-link btn btn-primary" href="/wandelingen">Terug</a>
+            </div>
+            <% } %>
 
-                <div class="card-footer text-muted">Aangemaakt door: <%=wandeling.auteur.username%> </div>
-        </div>
-        <div class="col-6">
+            <div class="card-footer text-muted">Aangemaakt door: <%=wandeling.auteur.username%> </div>
+    </div>
+    <div class="col-6">
         <% if(huidigeGebruiker) { %>
         <h3>Beoordeel deze wandeling</h3>
         <form action="/wandelingen/<%=wandeling._id%>/recensies" method="POST" class="mb-3 validated-form" novalidate>
@@ -80,7 +83,7 @@
         <div class="card mb-3">
             <div class="card-body">
                 <h6 class="card-subtitle mb-2 text-muted"> <%= recensie.auteur.username%>s oordeel</h6>
-                <!-- <h5 class="card-title">Beoordeling: <%= recensie.beoordeling %> sterren</h5> -->
+            
                 <p class="starability-result" data-rating="<%=recensie.beoordeling%>">
                     Rated: <%=recensie.beoordeling%> stars
                 </p>
@@ -96,3 +99,10 @@
         <% } %>
     </div>
 </div>
+
+<script>
+    const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+    const wandeling = <%-JSON.stringify(wandeling) %>
+</script>
+
+<script src="/js/showPageMap.js"></script>

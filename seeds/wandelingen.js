@@ -1,7 +1,7 @@
 module.exports = [
     {
         "naam": "Heide en Vennen",
-        "plaats": "Drouwen",
+        "plaats": "Steenhopenweg 4, Drouwen",
         "plaatjes": [
             {
                 url: "https://res.cloudinary.com/dc5aih2mm/image/upload/v1607779739/WandelApp/HeideEnVennen_ev9wzw.jpg",
@@ -19,7 +19,7 @@ module.exports = [
     },
     {
         "naam": "Bomen",
-        "plaats": "Drouwen",
+        "plaats": "Steenhopenweg 4, Drouwen",
         "plaatjes": [
             {
                 url: "https://res.cloudinary.com/dc5aih2mm/image/upload/v1607780000/WandelApp/Bomen_mz69zh.jpg",
@@ -37,7 +37,7 @@ module.exports = [
     },
     {
         "naam": "Rondje Tweelingen",
-        "plaats": "Schoonloo",
+        "plaats": "Hoofdstraat 30, Schoonloo",
         "plaatjes": [
             {
                 url: "https://res.cloudinary.com/dc5aih2mm/image/upload/v1607780095/WandelApp/RondjeTweelingen_hjwpn8.jpg",
@@ -55,7 +55,7 @@ module.exports = [
     },
     {
         "naam": "Melkwegpad",
-        "plaats": "Hooghalen",
+        "plaats": "Oosthalen 8, Hooghalen",
         "plaatjes": [
             {
                 url: "https://res.cloudinary.com/dc5aih2mm/image/upload/v1607780186/WandelApp/MelkwegPad_q06cc8.jpg",
@@ -71,4 +71,22 @@ module.exports = [
         "organisatie": "Staatsbosbeheer",
         "auteur": "5fcf955ebbb92d0751bfa473",
     },
+    {
+        "naam": "Boswachterspad Balloërveld",
+        "plaats": "Crabbeweg 2, Balloo",
+        "plaatjes": [
+            {
+                url: "vul nog in",
+                filename: "vul in"
+            }
+        ],
+        "gebied": "Drentsche Aa",
+        "provincie": "Drenthe",
+        "website": "https://www.staatsbosbeheer.nl/routes/drentsche-aa/boswachterspad-ballooerveld",
+        "afstand": "9",
+        "beschrijving": "De grote, stille heide waar je het Drenthe van honderd jaar geleden nog terug vindt. Dat maakt een wandeling over het Ballooërveld zo bijzonder. In augustus staat de heide vol in bloei. Wandel over de Galgenberg en ontdek het uitzicht op de eeuwenoude karresporen in het bloeiende heideveld.",
+        "bewegwijzering": "paars",
+        "organisatie": "Staatsbosbeheer",
+        "auteur": "5fcf955ebbb92d0751bfa473",
+    }
 ]
