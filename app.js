@@ -163,6 +163,7 @@ app.use((err, req, res, nest) => {
     res.status(statusCode).render('error', { err });
 });
 
-app.listen(8080, (req, res) => {
-    console.log('Poortje 8080 luistert weer mensen!!!')
+const port = process.env.PORT || 8080
+app.listen(port, (req, res) => {
+    console.log(`Poortje ${port} luistert weer mensen!!!`)
 });
