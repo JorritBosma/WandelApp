@@ -20,6 +20,10 @@ Handle geodata errors (what if place doesn't exist -> flash message? or fallback
 Handle geodata on edit (what if a user changes the location during edit? The app does not handle that right now).
 Fix problem cluster map: more wandelingen on one specific location will not show up seperately. -> right if-conditional, if coordinates already exist, tweak them until they do not exist in the database and are close to the original location, but distinguishable enough from the other wandelingen which start from there. -> Other solution: make some kind of modal/popup appear so you can cycle through the wandelingen over there on the cluster map. Look on mapbox for solutions.
 Style the page to make it more personal, nicer and more responsive. Had no time now to repair all changes bootstrap v4->v5 beta, which I used.
+Learn more about security, maybe ask someone with more experience (like my neighbour, a security officer) to test it when in production. Nice to have, so probably after bootcamp, because I will use my app in a small circle of family and friends only.
 
-# Styles cleanup
-This turned out to be quite messy, because I am using bootstrap v5 beta and Colt is using v4. I fixed some stuff which has changed, but struggled a bit and decided to leave the styles for now and customize them later.
+# Security 101
+Learned a lot but it was only a glimpse. 
+Helmet Config Security Policy took a lot of configuring in app.js. I included my bootstrap v5 but might have forgotten something, although the console does not complain right now.
+However, if the console starts yelling in read again in the future, just check what the issue is and reconfigure Config Security Policy if needed.
+Everything seems to be fine.

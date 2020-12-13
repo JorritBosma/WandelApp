@@ -1,17 +1,40 @@
-const Joi = require('joi');
+const BaseJoi = require('joi');
+const sanitizeHtml = require('sanitize-html');
+
+const extension = (joi) => ({
+    type: 'string',
+    base: joi.string(),
+    messages: {
+        'string.escapeHTML': '{{#label}} must not include HTML!'
+    },
+    rules: {
+        escapeHTML: {
+            validate(value, helpers) {
+                const clean = sanitizeHtml(value, {
+                    allowedTags: [],
+                    allowedAttributes: {},
+                });
+                if (clean !== value) return helpers.error('string.escapeHTML', { value })
+                return clean;
+            }
+        }
+    }
+});
+
+const Joi = BaseJoi.extend(extension)
 
 module.exports.wandelingSchema = Joi.object({
     wandeling: Joi.object({
-        naam: Joi.string().required(),
+        naam: Joi.string().required().escapeHTML(),
         // plaatje: Joi.string().required(),
-        plaats: Joi.string().required(),
-        gebied: Joi.string().required(),
-        provincie: Joi.string().required(),
-        website: Joi.string().required(),
+        plaats: Joi.string().required().escapeHTML(),
+        gebied: Joi.string().required().escapeHTML(),
+        provincie: Joi.string().required().escapeHTML(),
+        website: Joi.string().required().escapeHTML(),
         afstand: Joi.number().required().min(0),
-        beschrijving: Joi.string().required(),
-        organisatie: Joi.string().required(),
-        bewegwijzering: Joi.string().required()
+        beschrijving: Joi.string().required().escapeHTML(),
+        organisatie: Joi.string().required().escapeHTML(),
+        bewegwijzering: Joi.string().required().escapeHTML()
     }).required(),
     wisPlaatjes: Joi.array()
 });
@@ -19,6 +42,6 @@ module.exports.wandelingSchema = Joi.object({
 module.exports.recensieSchema = Joi.object({
     recensie: Joi.object({
         beoordeling: Joi.number().required().min(1).max(5),
-        body: Joi.string().required()
+        body: Joi.string().required().escapeHTML()
     }).required()
 })
