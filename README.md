@@ -17,10 +17,8 @@ Limit the number and the size of uploaded images!
 Cropping/resizing images in carousel.
 Make map on show-page responsive instead of fixed width/height (probably in Styles Cleanup section).
 Handle geodata errors (what if place doesn't exist -> flash message? or fallback to default behaviour?).
-Handle geodata on edit (what if a user changes the location during edit? The app does not handle that right now)
-# Maps
-Implemented geocoding. Had to seed my database manually, because my index.js seeder seems to be broken. No big problem, I only have a handful of instances.
+Handle geodata on edit (what if a user changes the location during edit? The app does not handle that right now).
+Fix problem cluster map: more wandelingen on one specific location will not show up seperately. -> right if-conditional, if coordinates already exist, tweak them until they do not exist in the database and are close to the original location, but distinguishable enough from the other wandelingen which start from there. -> Other solution: make some kind of modal/popup appear so you can cycle through the wandelingen over there on the cluster map. Look on mapbox for solutions.
 
-My index page was broken as well because of instances without images, because the showpage wants to render index of 0, the first image in the array, and cannot handle empty arrays. Fixed it myself with a simple if-condition- if(wandeling.plaatjes.length>0) and found out Colt handled this in a later video.
-
-Responsiveness map and error handling need work, I will put it under Extra wishes for now.
+# Cluster map
+Easy to follow, good to learn how to learn existing code, play around with it and tweak it. When there is more data (wandelingen) I'll have to retweak the cluster map for sure. Also, there can be more wandelingen on one geolocation, so I'll have to come up with a solution for that. Some JS probably, if coordinates already exist, change them just a bit randomly untill they find a spot close to the existing wandeling(en) on that location but are easily distinguishable. Or, have some kind of popup/dropdown/modal appear so a user can cycle through wandelingen on one location on the map and click on links.This is an extra wish, but pretty high on the list to make my cluster map work, because it is very typical to have one adress for a handful of wandelingen.
